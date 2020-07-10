@@ -1,5 +1,6 @@
 package com.laikacode.javatest.payment;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -10,6 +11,7 @@ class PaymentProcessorTest {
     private PaymentGateway gateway;
     private PaymentProcessor processor;
 
+    @BeforeEach
     void setup(PaymentStatus status){
         this.gateway = Mockito.mock(PaymentGateway.class);
 
