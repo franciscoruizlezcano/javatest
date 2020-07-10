@@ -7,23 +7,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentProcessorTest {
 
+    private PaymentGateway gateway;
+    private PaymentProcessor processor;
+
+    void setup(PaymentStatus status){
+        this.gateway = Mockito.mock(PaymentGateway.class);
+
+        Mockito.when(this.gateway.request(Mockito.any())).thenReturn(new PaymentResponse(status));
+
+        this.processor = new PaymentProcessor(this.gateway);
+    }
+
     @Test
     void paymentIsCorrect() {
-        PaymentGateway gateway = Mockito.mock(PaymentGateway.class);
+        setup(PaymentStatus.OK);
 
-        Mockito.when(gateway.request(Mockito.any())).thenReturn(new PaymentResponse(PaymentStatus.OK));
-
-        PaymentProcessor processor = new PaymentProcessor(gateway);
-        assertTrue(processor.makePayment(1000));
+        assertTrue(this.processor.makePayment(1000));
     }
 
     @Test
     void paymentIsWrong() {
-        PaymentGateway gateway = Mockito.mock(PaymentGateway.class);
+        setup(PaymentStatus.ERROR);
 
-        Mockito.when(gateway.request(Mockito.any())).thenReturn(new PaymentResponse(PaymentStatus.ERROR));
-
-        PaymentProcessor processor = new PaymentProcessor(gateway);
-        assertFalse(processor.makePayment(1000));
+        assertFalse(this.processor.makePayment(1000));
     }
 }
