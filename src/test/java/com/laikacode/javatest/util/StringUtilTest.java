@@ -5,7 +5,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilTest {
-    public static void main(String[] args) {
-        System.out.println(StringUtil.repeat("Hello", 5));
+    @Test
+    void repeatStringPositiveTimes() {
+        assertEquals("HelloHelloHelloHelloHello", StringUtil.repeat("Hello", 5));
+    }
+
+    @Test
+    void repeatStringZeroTimes() {
+        assertEquals("", StringUtil.repeat("Hello", 0));
+    }
+
+    @Test
+    void repeatStringNegativeTimes() {
+        assertThrows(IllegalArgumentException.class, () -> StringUtil.repeat("Hello", -10));
     }
 }

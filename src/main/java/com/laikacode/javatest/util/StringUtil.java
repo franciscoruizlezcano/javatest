@@ -2,10 +2,15 @@ package com.laikacode.javatest.util;
 
 public class StringUtil {
     public static String repeat(String str, int times){
-        String result = "";
-        for (int i = 0; i < times; i++) {
-            result += str;
+        if(times > 0){
+            String result = "";
+            for (int i = 0; i < times; i++) {
+                result += str;
+            }
+            return result;
+        }else{
+            throw new IllegalArgumentException("times negative");
         }
-        return result;
+
     }
 }
