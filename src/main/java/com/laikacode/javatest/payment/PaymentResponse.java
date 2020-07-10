@@ -1,10 +1,5 @@
 package com.laikacode.javatest.payment;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-@Data
 public class PaymentResponse {
     private PaymentStatus status;
 
