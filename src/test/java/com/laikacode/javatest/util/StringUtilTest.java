@@ -19,4 +19,15 @@ class StringUtilTest {
     void repeatStringNegativeTimes() {
         assertThrows(IllegalArgumentException.class, () -> StringUtil.repeat("Hello", -10));
     }
+
+
+    @Test
+    void isEmpty() {
+        assertEquals(true, StringUtil.isEmpty(""));
+    }
+
+    @Test
+    void isNotEmpty() {
+        assertEquals(false, StringUtil.isEmpty("Hello world"));
+    }
 }
